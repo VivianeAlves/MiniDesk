@@ -17,7 +17,7 @@ gem "highcharts-rails"
 gem "jquery-inputmask-rails"
 
 # Use Puma as the app server
-gem 'puma', '~> 4.3.1'
+gem 'puma', '~> 4.3.5'
 gem 'bulma-rails'
 gem "jquery-rails"
 gem "select2-rails"
