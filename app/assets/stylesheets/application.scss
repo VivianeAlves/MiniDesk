@@ -1,0 +1,276 @@
+/*
+ *= require_tree .
+ *= require_self
+*= require select2
+ */
+@import "font-awesome";
+
+$modal-background-background-color: white;
+$modal-content-width: 95%;
+
+@import "bulma";
+
+
+$thead-tabela: #466269;
+$rosa-claro: #ff8770;
+$cor-bt-login: #a7b4b7;
+$cinza-claro: #b4c0c2;
+$cor-branca: white;
+
+@font-face {
+  font-family: "Poppins-ExtraLight";
+  src: url(asset-path('Poppins-ExtraLight.otf')) format("truetype");
+}
+
+body {
+  font-family: 'Poppins-ExtraLight', Sans-Serif;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.logotipo {
+  padding-left: 5px !important;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+}
+
+.title {
+  color: $thead-tabela !important;
+  text-align: center !important;
+}
+
+.container {
+  width: 100% !important;
+}
+
+thead {
+  background-color: $thead-tabela !important;
+}
+
+thead > tr > th {
+  color: white !important;
+}
+
+.panel-heading {
+  background-color: $thead-tabela;
+  border: none;
+}
+
+.coluna-azul {
+  background-color: $thead-tabela;
+}
+
+.field-login {
+  text-align: center;
+  color: white;
+}
+
+.input-login {
+  width: 20em;
+}
+
+.bt-login {
+  align-items: center;
+}
+
+.bt-block {
+  width: 100%;
+  max-width: 100% !important;
+  background-color: $cor-bt-login;
+  border: none;
+  color: $thead-tabela;
+}
+
+.links-login {
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .links-login {
+    padding-left: 0px;
+  }
+}
+
+.navbar-link {
+  color: $thead-tabela !important;
+}
+
+.navbar-item {
+  color: $thead-tabela !important;
+}
+
+@media (max-width: 767px) {
+  .bt-block {
+    width: 100%;
+  }
+}
+
+.title-white {
+  color: white !important;
+  margin-top: 10px !important;
+}
+
+.hero-head {
+  background-color: $cor-branca;
+}
+
+div #botoes-login {
+  margin-top: 40px !important;
+}
+
+.hero-body-app {
+  background-color: $rosa-claro !important;
+}
+
+.hero-body-graphic {
+  background-color: $white !important;
+}
+
+.actions {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.modal-close {
+  background-color: $rosa-claro;
+}
+
+.subtx {
+  font-size: larger;
+  color: $thead-tabela;
+}
+
+.pagination {
+  display: block;
+  background-color: $cor-branca;
+  width: 100% !important;
+  margin-left: 0px !important;
+  font-size: small;
+
+  .previous_page {
+    color: $cor-branca;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .current {
+    color: $thead-tabela;
+    background-color: $cinza-claro;
+    font-weight: bolder;
+    font-style: normal !important;
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+
+  a {
+    color: $thead-tabela;
+  }
+
+  .next_page {
+    color: $thead-tabela;
+    padding-left: 1em;
+  }
+}
+
+.disabled {
+  color: $thead-tabela !important;
+}
+
+.columns {
+  width: 90% !important;
+}
+
+.box-login {
+  height: 400px !important;
+}
+
+.box-registro {
+  height: 500px !important;
+}
+
+.icon {
+  color: $thead-tabela;
+  margin-left: 10px !important;
+}
+
+tfoot {
+  background-color: $cor-branca !important;
+}
+
+.table tfoot td, .table tfoot th {
+  border-width: 0 0 0;
+}
+
+.table td, .table th {
+  border-width: 0 0 0.5px;
+}
+
+.table thead td, .table thead th {
+  border-width: 0 0 1px;
+}
+
+.fa-star-half-full {
+  margin-top: 9.5px !important;
+}
+
+.fa-star {
+  margin-top: 9.5px !important;
+}
+
+.fa-star-o {
+  margin-top: 9.5px !important;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: $thead-tabela;
+}
+
+#notice {
+  color: $thead-tabela;
+}
+
+#alert {
+  color: $cinza-claro;
+  font-size: smaller;
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
+
+.bt-index {
+  margin-top: -15px !important;
+}
+
+.busca_form {
+  border: none;
+  margin-bottom: 10px;
+  text-align: right !important;
+}
+
+.bt-buscar {
+  background-color: #466269;
+  border: none;
+  color: $cor-branca;
+  padding: 5px 5px 7px 5px;
+}
+
+.input-buscar {
+  width: 20em !important;
+  background-color: #ff9f8c;
+  border: none;
+  color: $cor-branca;
+}
+
+.input-buscar::-webkit-input-placeholder {
+  color: $cor-branca;
+}
+
+@media (max-width: 767px) {
+  .input-buscar {
+    width: 100%;
+  }
+}
+
+.title:not(:last-child){
+  margin-bottom: 0.9rem !important;
+}

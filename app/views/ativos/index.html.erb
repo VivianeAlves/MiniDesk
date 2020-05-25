@@ -1,0 +1,39 @@
+<h1 class="title">Ativos</h1>
+<%= render "busca_form_ativos" %>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Descrição ativo</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="4"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+
+    <tbody>
+    <% if @ativos.empty? %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @ativos.size %>
+    <% else %>
+      <% @ativos.each do |ativo| %>
+        <tr>
+          <td><%= ativo.descricao_ativo %></td>
+          <td><%= link_to '', ativo, remote: true, class: "icon fa fa-search-plus" %></td>
+          <td><%= link_to '', edit_ativo_path(ativo), remote: true, class: "icon fa fa-pencil-square" %></td>
+          <td><%= link_to '', ativo, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+        </tr>
+      <% end %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @ativos.size %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'Novo Ativo', new_ativo_path, class: "button is-rounded bt-index", remote: true %>
+<%= render "compartilhadas/popup" %>

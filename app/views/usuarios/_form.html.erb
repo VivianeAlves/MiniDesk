@@ -1,0 +1,36 @@
+<%= form_for @usuario, remote: true do |form| %>
+  <% if @usuario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+      <ul>
+        <% @usuario.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :nome %>
+  <%= form.text_field :nome, class: 'input' %>
+  <%= form.label :sobrenome %>
+  <%= form.text_field :sobrenome, class: 'input' %>
+  <%= form.label :celular %>
+  <%= form.text_field :celular, class: 'input', id:"celular"%>
+  <%= form.label :email %>
+  <%= form.text_field :email, class: 'input' %>
+  <%= form.label :setor %>
+  <br>
+  <div class="select is-rounded">
+    <%= form.select :setor_id, Setor.all.collect { |setor| [setor.nome, setor.id] } %>
+  </div>
+  <br>
+  <%= form.label :senha %>
+  <%= form.password_field :password, class: "input" %>
+  <br>
+
+  <%= form.submit nil, class: "button is-rounded" %>
+
+<% end %>
+<script>
+    $("#celular").inputmask('(99)99999-9999');
+</script>

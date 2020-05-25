@@ -1,0 +1,41 @@
+<h1 class="title">Tipos</h1>
+<%= render "busca_form_tipos" %>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Descrição do tipo</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="4"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% if @tipos.empty? %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @tipos.size %>
+
+    <% else %>
+      <% @tipos.each do |tipo| %>
+        <tr>
+          <td><%= tipo.descricao_tipo %></td>
+          <td><%= link_to '', tipo, remote: true, class: "icon fa fa-search-plus" %></td>
+          <td><%= link_to '', edit_tipo_path(tipo), remote: true, class: "icon fa fa-pencil-square" %></td>
+          <td><%= link_to '', tipo, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+        </tr>
+      <% end %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @tipos.size %>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>
+<br>
+
+<%= link_to 'Novo Tipo', new_tipo_path, remote: true, class: "button is-rounded bt-index" %>
+
+<%= render "compartilhadas/popup" %>

@@ -1,0 +1,22 @@
+ <%= form_with(model: ativo, remote: true) do |form| %>
+  <% if ativo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ativo.errors.count, "error") %> prohibited this ativo from being saved:</h2>
+
+      <ul>
+        <% ativo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Descrição do Ativo" %>
+    <%= form.text_field :descricao_ativo, class: "input" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: "button is-rounded" %>
+  </div>
+<% end %>

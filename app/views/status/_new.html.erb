@@ -1,0 +1,11 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <h1 class="title">Novo Status</h1>
+
+    <%= render 'form', status: @status %>
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>

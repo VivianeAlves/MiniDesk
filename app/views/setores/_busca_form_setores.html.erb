@@ -1,0 +1,6 @@
+<div class="busca_form">
+  <%= form_tag setores_path, method: :get do %>
+    <%= text_field_tag :term, params[:term], placeholder: 'Insira o nome do setor', :class => "input is-small input-buscar"%>
+    <%= submit_tag "Buscar", class: "bt-buscar"%>
+  <% end %>
+</div>

@@ -1,0 +1,55 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <p id="notice"><%= notice %></p>
+    <h1 class="title">Informações</h1>
+    <p class="subtx">
+      <strong>Tipo:</strong>
+      <%= @chamado.tipo.descricao_tipo %>
+    </p>
+
+    <p class="subtx">
+      <strong>Status:</strong>
+      <%= @chamado.status.descricao_status %>
+    </p>
+
+    <p class="subtx">
+      <strong>Ativo:</strong>
+      <%= @chamado.ativo.descricao_ativo %>
+    </p>
+
+    <p class="subtx">
+      <strong>Título chamado:</strong>
+      <%= @chamado.titulo %>
+    </p>
+
+    <p class="subtx">
+      <strong>Descricao chamado:</strong>
+      <%= @chamado.descricao_chamado %>
+    </p>
+
+    <p class="subtx">
+      <strong>Acao:</strong>
+      <%= @chamado.acao.descricao_acao %>
+    </p>
+
+    <p class="subtx">
+      <strong>Data:</strong>
+      <%= @chamado.data_abertura %>
+    </p>
+
+    <% if @chamado.resolucao != "" %>
+      <p class="subtx">
+        <strong>Observacoes:</strong>
+        <%= @chamado.resolucao %>
+      </p>
+    <% end %>
+
+    <%= link_to 'Edit', edit_chamado_path(@chamado), remote: true, :class => "button is-rounded" %>
+    <%= render "compartilhadas/back_button" %>
+  </section>
+
+  <%= render "compartilhadas/close_button" %>
+</div>
+
+<%= render "compartilhadas/js-modal-close" %>

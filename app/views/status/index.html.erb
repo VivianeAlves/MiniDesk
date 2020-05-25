@@ -1,0 +1,39 @@
+<h1 class="title">Status</h1>
+<%= render "busca_form_status" %>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Descrição do status</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="4"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% if @status.empty? %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @status.size %>
+    <% else %>
+      <% @status.each do |status| %>
+        <tr>
+          <td><%= status.descricao_status %></td>
+          <td><%= link_to '', status, remote: true, class: "icon fa fa-search-plus" %></td>
+          <td><%= link_to '', edit_status_path(status), remote: true, class: "icon fa fa-pencil-square" %></td>
+          <td><%= link_to '', status, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+        </tr>
+      <% end %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @status.size %>
+    <% end %>
+
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'Novo Status', new_status_path, class: "button is-rounded bt-index", remote: true %>
+<%= render "compartilhadas/popup" %>

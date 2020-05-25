@@ -1,0 +1,17 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <p id="notice"><%= notice %></p>
+
+    <p class="subtx">
+      <strong>Descrição da ação:</strong>
+      <%= @acao.descricao_acao %>
+    </p>
+
+    <%= link_to 'Edit', edit_acao_path(@acao), remote: true , class: "button is-rounded"%> |
+
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>

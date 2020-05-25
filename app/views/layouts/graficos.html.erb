@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniDesk</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+<section class="hero is-fullheight" style="background-color: white !important;">
+  <div class="hero-head">
+    <%= render "layouts/navbar" %>
+  </div>
+  <div class="hero-body hero-body-graphic">
+    <div class="container has-text-centered">
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
+        <div class="column is-fullwidth">
+          <%= yield %>
+        </div>
+    </div>
+  </div>
+</section>
+<script>
+    $(document).ready(function () {
+        //anima menu (abre/fecha) menu mobile
+        $(".navbar-burger").click(function () {
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+        });
+        // muda status aberto/ fechado dropmenu no navbar
+        document.querySelectorAll('.navbar-link').forEach(function (navbarLink) {
+            navbarLink.addEventListener('click', function () {
+                navbarLink.nextElementSibling.classList.toggle('is-hidden-mobile');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

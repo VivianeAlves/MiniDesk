@@ -1,0 +1,40 @@
+<h1 class="title">Ações</h1>
+<%= render "busca_form_acoes"%>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Descrição da ação</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="4"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% if @acoes.empty? %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @acoes.size %>
+    <% else %>
+      <% @acoes.each do |acao| %>
+        <tr>
+          <td><%= acao.descricao_acao %></td>
+          <td><%= link_to '', acao, remote: true, class: "icon fa fa-search-plus" %></td>
+          <td><%= link_to '', edit_acao_path(acao), remote: true, class: "icon fa fa-pencil-square" %></td>
+          <td><%= link_to '', acao, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @acoes.size %>
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'Nova Ação', new_acao_path, class: "button is-rounded bt-index", remote: true %>
+
+<%= render "compartilhadas/popup" %>
+

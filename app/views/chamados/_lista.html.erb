@@ -1,0 +1,81 @@
+<h1 class="title">Chamados</h1>
+<%= render "busca_form_chamado"%>
+<div class="table-container">
+<table class="table is-fullwidth">
+  <thead>
+  <tr>
+    <th class="is-narrow">ID</th>
+    <th>Requisitante</th>
+    <th>Tipo</th>
+    <th>Status</th>
+    <th>Ativo</th>
+    <th>Título</th>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Técnico</th>
+    <th class="is-narrow">Prioridade</th>
+    <th colspan="2" class="is-narrow"></th>
+  </tr>
+  </thead>
+<tfoot>
+    <tr>
+      <th colspan="12"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+  <tbody>
+  <% if @chamados.empty? %>
+    <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @chamados.size %>
+  <% else %>
+    <% @chamados.each do |chamado| %>
+      <tr>
+        <td><%= chamado.id %></td>
+        <td><%= chamado.usuario.nome %></td>
+        <td><%= chamado.tipo.descricao_tipo %></td>
+        <td><%= chamado.status.descricao_status %></td>
+        <td><%= chamado.ativo.descricao_ativo %></td>
+        <%if chamado.titulo.size > 16 %>
+         <% abreviacao =""%>
+            <%for letra in 0..8 do
+              abreviacao += chamado.titulo[letra]%>
+            <%end%>
+            <td><%= abreviacao %>..</td>
+         <%elsif%>
+            <td><%= chamado.titulo %></td>
+         <%end%>
+
+        <% if chamado.data_chamado.nil? && chamado.hora_chamado.nil?%>
+          <td>S/D</td>
+          <td>S/H</td>
+        <% elsif chamado.data_chamado.nil? && chamado.hora_chamado !=nil%>
+          <td>S/D</td>
+          <td><%= chamado.hora_chamado.delete_suffix("-04") %></td>
+         <% elsif chamado.data_chamado != nil && chamado.hora_chamado.nil?%>
+          <td><%= chamado.data_chamado.strftime("%d/%m/%Y") %></td>
+          <td>S/H</td>
+        <% else %>
+          <td><%= chamado.data_chamado.strftime("%d/%m/%Y") %></td>
+           <td><%= chamado.hora_chamado.delete_suffix("-04") %></td>
+        <%end%>
+        <td><%= chamado.tecnico.usuario.nome %></td>
+        <% if chamado.prioridade == "Alta" %>
+          <td class="icon fa fa-star"></td>
+        <% elsif chamado.prioridade == "Normal" %>
+           <td class="icon fa fa-star-half-full"></td>
+        <% else %>
+          <td class="icon fa fa-star-o"></td>
+        <% end %>
+        <td><%= link_to '', chamado, remote: true, class: "icon fa fa-search-plus" %></td>
+        <td><%= link_to '', edit_chamado_path(chamado), remote: true , class:"icon fa fa-pencil-square"%></td>
+      </tr>
+    <% end %>
+    <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @chamados.size %>
+  <% end %>
+
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'Novo Chamado', new_chamado_path, remote: true, class: "button is-rounded bt-index" %>
+
+<%= render "compartilhadas/popup" %>

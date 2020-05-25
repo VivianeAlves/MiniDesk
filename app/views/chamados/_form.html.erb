@@ -1,0 +1,164 @@
+<%= form_with(model: chamado, remote: true) do |form| %>
+  <% if chamado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chamado.errors.count, "error") %> prohibited this chamado from being saved:</h2>
+
+      <ul>
+        <% chamado.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <%= form.label :tipo_id %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :tipo_id, Tipo.all.collect {|tipo| [tipo.descricao_tipo, tipo.id]}, {}, id: "select-tipo" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= form.label :usuário %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :usuario_id, Usuario.all.collect {|usuario| [usuario.nome, usuario.id]} %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <%= form.label :ativo_id %>
+        <div class="select is-rounded">
+          <%= form.select :ativo_id, Ativo.all.collect {|ativo| [ativo.descricao_ativo, ativo.id]} %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :técnico %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :tecnico_id, Tecnico.all.collect {|tecnico| [tecnico.usuario.nome, tecnico.id]} %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <%= form.label :status_id %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :status_id, Status.all.collect {|status| [status.descricao_status, status.id]}, {}, id: "select-status" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :prioridade %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :prioridade, ["Alta", "Normal", "Baixa"], selected: "Normal", id: "select-tipo" %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="is-hidden field" id="campo-acao">
+        <%= form.label :ação %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :acao_id, Acao.all.collect {|acao| [acao.descricao_acao, acao.id]}, {}, id: "select-acao" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= form.label :setor_id %>
+        <br>
+        <div class="select is-rounded">
+          <%= form.select :setor_id, Setor.all.collect {|setor| [setor.nome, setor.id]} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <%= form.label :titulo %>
+        <%= form.text_field :titulo, class: "input" %>
+      </div>
+      <div class="field">
+        <%= form.label :descricao_chamado %>
+        <%= form.text_area :descricao_chamado, class: "textarea" %>
+      </div>
+    </div>
+    <div class="column">
+      <div class="is-hidden field" id="campo-resolucao">
+        <%= form.label :resolucao %>
+        <%= form.text_area :resolucao, class: "textarea" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: "button is-rounded"%>
+  </div>
+<% end %>
+
+<script>
+    var status = '';
+    var tipo = '';
+
+    document.getElementById("select-status").onchange = function () {
+        var comboStatus = document.getElementById("select-status");
+        status = comboStatus.options[comboStatus.selectedIndex].text;
+        if (status == "Fechado") {
+            campos_visiveis();
+        } else {
+            campos_invisiveis();
+        }
+    }
+
+    document.getElementById("select-tipo").onchange = function () {
+        var comboTipo = document.getElementById("select-tipo");
+        tipo = comboTipo.options[comboTipo.selectedIndex].text;
+        var comboPrioridade = document.getElementById("chamado_prioridade");
+
+        var prioridade_map = new Map();
+
+        //popula map
+        for (var i = 0; i < comboPrioridade.length; i++) {
+            prioridade_map.set(comboPrioridade.options[i].text, i);
+            // console.log("index: "+i+", valor: "+comboPrioridade.options[i].text);
+        }
+
+        if (tipo == "Suporte" || tipo == "Instalação" || tipo == "Configuração") {
+            // a index é a posição do texto no array de exibição da combobox
+            // comboPrioridade.selectedIndex = 0; seleciona a primeira opção da comboboc
+            comboPrioridade.selectedIndex = prioridade_map.get("Alta");
+
+        } else if (tipo == "Devolução") {
+            comboPrioridade.selectedIndex = prioridade_map.get("Baixa");
+        } else {
+            comboPrioridade.selectedIndex = prioridade_map.get("Normal");
+        }
+    }
+
+    function campos_visiveis() {
+        $("#campo-resolucao").removeClass('is-hidden');
+        $("#campo-acao").removeClass('is-hidden');
+    }
+
+    function campos_invisiveis() {
+        $("#campo-resolucao").addClass('is-hidden');
+        $("#campo-acao").addClass('is-hidden');
+    }
+
+
+    $(document).ready(function () {
+        var selectStatus = document.getElementById("select-status");
+        var status_combo = selectStatus.options[selectStatus.selectedIndex].text;
+        if (status_combo == "Fechado") {
+            campos_visiveis();
+        }
+    });
+
+</script>

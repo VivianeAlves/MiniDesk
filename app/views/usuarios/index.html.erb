@@ -1,0 +1,47 @@
+<h1 class="title">Usuários</h1>
+<%= render "busca_form_usuarios" %>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Celular</th>
+      <th>E-mail</th>
+      <th>Setor</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="8"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% if @usuarios.empty? %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @usuarios.size %>
+    <% else %>
+      <% @usuarios.each do |usuario| %>
+          <tr>
+            <td><%= usuario.nome %></td>
+            <td><%= usuario.sobrenome %></td>
+            <td><%= usuario.celular %></td>
+            <td><%= usuario.email %></td>
+            <td><%= usuario.setor.nome %></td>
+            <td><%= link_to '', usuario_path(usuario), remote: true, class: "icon fa fa-search-plus" %></td>
+            <td><%= link_to '', edit_usuario_path(usuario), remote: true, class: "icon fa fa-pencil-square" %></td>
+            <td><%= link_to '', usuario, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+          </tr>
+      <% end %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @usuarios.size %>
+    <% end %>
+
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'Novo Usuario', new_usuario_path, remote: true, class: "button is-rounded bt-index" %>
+<%= render "compartilhadas/popup" %>

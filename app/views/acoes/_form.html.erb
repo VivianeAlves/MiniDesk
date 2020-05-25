@@ -1,0 +1,22 @@
+<%= form_with(model: acao, remote: true) do |form| %>
+  <% if acao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(acao.errors.count, "error") %> prohibited this acao from being saved:</h2>
+
+      <ul>
+        <% acao.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Descrição da ação" %>
+    <%= form.text_field :descricao_acao, class: "input", :id => "descricao_acao" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Ação", class: "button is-rounded", id: "bt-submit" %>
+  </div>
+<% end %>

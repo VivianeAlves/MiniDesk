@@ -1,0 +1,13 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <h1 class="title">Editando Ação</h1>
+
+    <%= render 'form', acao: @acao %>
+
+    <%= link_to 'Show', @acao, remote: true , class: "button is-rounded"%> |
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>

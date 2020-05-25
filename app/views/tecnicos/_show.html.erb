@@ -1,0 +1,25 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <p id="notice"><%= notice %></p>
+
+    <p class="subtx">
+      <strong>Usuario:</strong>
+      <%= @tecnico.usuario.nome + " " + @tecnico.usuario.sobrenome %>
+    </p>
+
+    <p class="subtx">
+      <strong>Admin:</strong>
+      <% if @tecnico.admin %>
+        <strong>Sim</strong>
+      <% else %>
+        <strong>Não</strong>
+      <% end %>
+    </p>
+
+    <%= link_to 'Edit', edit_tecnico_path(@tecnico), remote: true, class: "button is-rounded" %> |
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>

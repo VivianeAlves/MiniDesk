@@ -1,0 +1,12 @@
+<div class="modal" id="new-modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <h1 class="title">Nova Ação</h1>
+    <%= render 'form', acao: @acao %>
+
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>
+

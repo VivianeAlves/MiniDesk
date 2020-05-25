@@ -1,0 +1,74 @@
+<nav class="navbar" role="navigation">
+  <div class="navbar-brand">
+    <img src="/MiniDeskLogo.png" class="logotipo" width="105px" height="5px">
+    <% if usuario_signed_in? %>
+      <a role="button" class="navbar-burger" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    <% end %>
+  </div>
+  <div class="navbar-menu">
+    <% if usuario_signed_in? %>
+      <div class="navbar-start">
+        <%= link_to current_usuario.nome.concat(" ", current_usuario.sobrenome), usuario_path(current_usuario.id), :class => "navbar-item", remote: true %>
+      </div>
+      <div class="navbar-end">
+        <% if usuario_eh_tecnico? %>
+          <% if tecnico_eh_admin? %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><i class="icon fa fa-user-circle"></i><span></span>Usuários</a>
+              <div class="navbar-dropdown is-hidden-mobile is-boxed">
+                <%= link_to "Novo", new_usuario_path, :class => "navbar-item", remote: true %>
+                <%= link_to "Todos os Usuários", usuarios_path, :class => "navbar-item" %>
+              </div>
+            </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><i class="icon fa fa-user"></i><span></span>Técnicos</a>
+              <div class="navbar-dropdown is-hidden-mobile is-boxed">
+                <%= link_to "Novo", new_tecnico_path, remote: true, :class => "navbar-item" %>
+                <%= link_to "Listar Todos", tecnicos_path, :class => "navbar-item" %>
+              </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><i class="icon fa fa-pie-chart"></i><span></span>Gráficos</a>
+              <div class="navbar-dropdown is-hidden-mobile is-boxed">
+                <%= link_to "Chamados por técnico", graficos_index_path, :class => "navbar-item" %>
+                <%= link_to "Chamados por status", graficos_por_status_path, :class => "navbar-item" %>
+                <%= link_to "Chamados por requisitante", graficos_por_requisitante_path, :class => "navbar-item" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"><i class="icon fa fa-list-alt"></i><span></span>Chamados</a>
+          <div class="navbar-dropdown is-hidden-mobile is-boxed">
+            <% if usuario_eh_tecnico? %>
+              <%= link_to "Abertos", "/chamados/abertos", :class => "navbar-item" %>
+              <%= link_to "Atribuídos a mim", "/chamados/atribuidos", :class => "navbar-item" %>
+            <% end %>
+            <%= link_to "Criar", new_chamado_path, remote: true, :class => "navbar-item" %>
+            <% if usuario_eh_tecnico? %>
+              <%= link_to "Listar Todos", chamados_path, :class => "navbar-item" %>
+              <% if tecnico_eh_admin? %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Setores", setores_path, :class => "navbar-item" %>
+                <%= link_to "Tipos", tipos_path, :class => "navbar-item" %>
+                <%= link_to "Ações", acoes_path, :class => "navbar-item" %>
+                <%= link_to "Ativos", ativos_path, :class => "navbar-item" %>
+                <%= link_to "Status", status_index_path, :class => "navbar-item" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <a class="navbar-item" href="/chamados/solicitacoes"><i class="icon fa fa-check-square-o"></i><span></span>Minhas
+          Solicitações</a>
+        <a class="navbar-item" data-method="delete" href="/accounts/sign_out"><i class="icon fa fa-power-off"></i><span></span>Sair</a>
+        </div>
+    <% end %>
+    </div>
+    </nav>

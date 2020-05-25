@@ -1,0 +1,44 @@
+<h1 class="title">Setores</h1>
+<%= render "busca_form_setores" %>
+<div class="table-container">
+  <table class="table is-narrow is-fullwidth">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Sigla</th>
+      <th>Ramal</th>
+      <th class="is-narrow">Exibir</th>
+      <th class="is-narrow">Editar</th>
+      <th class="is-narrow">Excluir</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th colspan="6"><%= render "compartilhadas/paginacao" %></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% if @setores.empty? %>
+      <%= render "corpo-vazio-tabela", qtd_elementos: @setores.size %>
+    <% else %>
+      <% @setores.each do |setor| %>
+        <tr>
+          <td><%= setor.nome %></td>
+          <td><%= setor.sigla %></td>
+          <td><%= setor.ramal %></td>
+          <td><%= link_to '', setor, remote: true, class: "icon fa fa-search-plus" %></td>
+          <td><%= link_to '', edit_setor_path(setor), remote: true, class: "icon fa fa-pencil-square"  %></td>
+          <td><%= link_to '', setor, method: :delete, data: {confirm: 'Are you sure?'}, class: "icon fa fa-close" %></td>
+        </tr>
+      <% end %>
+      <%= render "compartilhadas/corpo-vazio-tabela", qtd_elementos: @setores.size %>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+<br>
+
+<%= link_to 'Novo Setor', new_setor_path, remote: true, class: "button is-rounded bt-index" %>
+
+<%= render "compartilhadas/popup" %>

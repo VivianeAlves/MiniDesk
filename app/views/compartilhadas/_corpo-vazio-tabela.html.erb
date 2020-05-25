@@ -1,0 +1,20 @@
+<% linhas = 5 %>
+<% if qtd_elementos == 0 %>
+  <% linhas.times do %>
+    <tr>
+      <% 4.times do %>
+        <td style="color: white; border: none;"><span></span></td>
+      <% end %>
+    </tr>
+  <% end %>
+<% else %>
+  <% (linhas - qtd_elementos).times do %>
+    <tr>
+      <% 4.times do %>
+        <td style="color: white; border: none;"><span></span></td>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
+
+

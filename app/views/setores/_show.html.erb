@@ -1,0 +1,27 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <p id="notice"><%= notice %></p>
+
+    <p class="subtx">
+      <strong>Nome:</strong>
+      <%= @setor.nome %>
+    </p>
+
+    <p class="subtx">
+      <strong>Sigla:</strong>
+      <%= @setor.sigla %>
+    </p>
+
+    <p class="subtx">
+      <strong>Ramal:</strong>
+      <%= @setor.ramal %>
+    </p>
+
+    <%= link_to 'Edit', edit_setor_path(@setor), remote: true, class: "button is-rounded" %> |
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+
+<%= render "compartilhadas/js-modal-close" %>

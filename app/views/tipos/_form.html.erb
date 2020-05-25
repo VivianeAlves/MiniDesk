@@ -1,0 +1,22 @@
+<%= form_with(model: tipo, remote: true) do |form| %>
+  <% if tipo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipo.errors.count, "error") %> prohibited this tipo from being saved:</h2>
+
+      <ul>
+        <% tipo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :descricao_tipo %>
+    <%= form.text_field :descricao_tipo, class: "input" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: "button is-rounded"%>
+  </div>
+<% end %>

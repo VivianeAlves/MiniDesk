@@ -1,0 +1,35 @@
+<%= form_with(model: tecnico, remote: true) do |form| %>
+  <% if tecnico.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tecnico.errors.count, "error") %> prohibited this tecnico from being saved:</h2>
+
+      <ul>
+        <% tecnico.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :usuario_id %>
+      <%= form.select :usuario_id, Usuario.all.collect {|usuario| [usuario.nome.concat(" ", usuario.sobrenome), usuario.id]}, {}, class: 'usuario-search', id: "usuario-search" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin %>
+    <%= form.check_box :admin, class: "checkbox" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: "button is-rounded" %>
+  </div>
+<% end %>
+
+<script>
+    $(document).ready(function () {
+        $('.usuario-search').select2({
+            width: 200
+        });
+    });
+</script>

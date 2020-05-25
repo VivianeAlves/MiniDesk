@@ -1,0 +1,12 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <h1 class="title">Editar Chamado</h1>
+    <%= render 'form', chamado: @chamado %>
+    <%= link_to 'Show', @chamado, remote: true, :class => "button is-rounded" %>
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>
+

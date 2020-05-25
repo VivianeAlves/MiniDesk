@@ -1,0 +1,18 @@
+<div id="high">
+  <div class="modal">
+    <div class="modal-background"></div>
+    <section class="modal-content">
+      <p id="notice"><%= notice %></p>
+
+      <p class="subtx">
+        <strong>Descricao ativo:</strong>
+        <%= @ativo.descricao_ativo %>
+      </p>
+
+      <%= link_to 'Edit', edit_ativo_path(@ativo), remote: true %> |
+      <%= render "compartilhadas/back_button" %>
+    </section>
+    <%= render "compartilhadas/close_button" %>
+  </div>
+  <%= render "compartilhadas/js-modal-close" %>
+</div>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo: one
+  status: one
+  ativo: one
+  descricao_chamado: MyString
+  acao: one
+  data: 2020-01-19 20:54:36
+  observacoes: MyText
+
+two:
+  tipo: two
+  status: two
+  ativo: two
+  descricao_chamado: MyString
+  acao: two
+  data: 2020-01-19 20:54:36
+  observacoes: MyText

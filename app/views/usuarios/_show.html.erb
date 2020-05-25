@@ -1,0 +1,24 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <section class="modal-content">
+    <strong>Nome:</strong>
+    <%= @usuario.nome %>
+    <br>
+    <strong>Sobrenome:</strong>
+    <%= @usuario.sobrenome %>
+    <br>
+    <strong>Celular:</strong>
+    <%= @usuario.celular %>
+    <br>
+    <strong>E-mail:</strong>
+    <%= @usuario.email %>
+    <br>
+    <strong>Setor:</strong>
+    <%= @usuario.setor.nome %>
+    <p></p>
+    <%= link_to 'Edit', edit_usuario_path(@usuario), remote: true, class: "button is-rounded" %> |
+    <%= render "compartilhadas/back_button" %>
+  </section>
+  <%= render "compartilhadas/close_button" %>
+</div>
+<%= render "compartilhadas/js-modal-close" %>
